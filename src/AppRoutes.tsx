@@ -5,6 +5,7 @@ import { loadContacts } from "./pages/loader";
 import ContactsSkeletonPage from "./Layouts/HomeSkeleton";
 import ContactDetail from "./pages/ContactDetail";
 import { contactDetailActions, newContactAction } from "./pages/actions";
+import Signup from "./pages/auth/Signup";
 
 const AppRoutes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const AppRoutes = createBrowserRouter([
         Component: ContactForm,
       },
     ],
+  },
+  {
+    path: "/signup",
+    Component: Signup,
   },
   {
     path: "/about",
