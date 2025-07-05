@@ -7,7 +7,7 @@ interface UserPayload {
 
 const REDIRECT_URL = import.meta.env.VITE_SUPABASE_REDIRECT_URL as string;
 
-export const registerPassword = async (userPayload: UserPayload) => {  
+export const signUpUser = async (userPayload: UserPayload) => {  
   const { data, error } = await supabase.auth.signUp({
     email: userPayload.email,
     password: userPayload.password,

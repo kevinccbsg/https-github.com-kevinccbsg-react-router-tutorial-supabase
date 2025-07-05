@@ -1,4 +1,4 @@
-import { registerPassword } from "@/services/supabase/auth/auth";
+import { signUpUser } from "@/services/supabase/auth/auth";
 import { ActionFunctionArgs, redirect } from "react-router";
 
 export const signup = async ({ request }: ActionFunctionArgs) => {
@@ -7,6 +7,6 @@ export const signup = async ({ request }: ActionFunctionArgs) => {
     email: formData.get('email') as string,
     password: formData.get('password') as string,
   };
-  await registerPassword(userPayload);
+  await signUpUser(userPayload);
   return redirect('/');
 };
