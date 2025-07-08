@@ -7,6 +7,7 @@ import ContactDetail from "./pages/ContactDetail";
 import { contactDetailActions, newContactAction } from "./pages/actions";
 import Signup from "./pages/auth/Signup";
 import { signup } from "./pages/auth/actions";
+import Login from "./pages/auth/Login";
 
 const AppRoutes = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const AppRoutes = createBrowserRouter([
     path: "/signup",
     action: signup,
     Component: Signup,
+  },
+  {
+    path: "/login",
+    Component: Login,
   },
   {
     path: "/about",
