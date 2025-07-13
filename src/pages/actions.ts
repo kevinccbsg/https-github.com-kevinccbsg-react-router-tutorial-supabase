@@ -1,5 +1,6 @@
 import { ActionFunctionArgs, redirect } from "react-router";
 import { createContact, deleteContact, updateFavoriteStatus } from "@/api/contacts";
+import { logout } from "@/lib/auth";
 
 interface NewContact {
   firstName: string;
@@ -55,6 +56,23 @@ export const contactDetailActions = async ({ request }: ActionFunctionArgs) => {
       const favorite = formData.get("favorite") === "true";
       await updateFavoriteStatus(id, favorite);
       return null;
+    },
+  };
+
+  if (handlers[method]) {
+    return handlers[method]();
+  }
+
+  return null;
+};
+
+export const contactsActions = async ({ request }: ActionFunctionArgs) => {
+  const method = request.method.toUpperCase();
+
+  const handlers: Record<string, () => Promise<Response | null>> = {
+    POST: async () => {
+      await logout();
+      return redirect('/login');
     },
   };
 

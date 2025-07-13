@@ -9,3 +9,7 @@ export const requireUserSession = async () => {
   }
   return user;
 };
+
+export const logout = async () => {
+  await auth.logout();
+};

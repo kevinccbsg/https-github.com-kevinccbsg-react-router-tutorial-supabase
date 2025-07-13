@@ -4,7 +4,7 @@ import ContactForm from "./pages/ContactForm";
 import { loadContactForm, loadContacts } from "./pages/loader";
 import ContactsSkeletonPage from "./Layouts/HomeSkeleton";
 import ContactDetail from "./pages/ContactDetail";
-import { contactDetailActions, newContactAction } from "./pages/actions";
+import { contactDetailActions, contactsActions, newContactAction } from "./pages/actions";
 import Signup from "./pages/auth/Signup";
 import { signup } from "./pages/auth/actions";
 import Login from "./pages/auth/Login";
@@ -15,6 +15,7 @@ const AppRoutes = createBrowserRouter([
     loader: loadContacts,
     id: "root",
     HydrateFallback: ContactsSkeletonPage,
+    action: contactsActions,
     Component: ContactsPage,
     children: [
       {

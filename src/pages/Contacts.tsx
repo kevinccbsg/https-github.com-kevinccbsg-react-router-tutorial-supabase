@@ -1,6 +1,7 @@
-import { Outlet, useFetchers, useLoaderData } from "react-router";
+import { Form, Outlet, useFetchers, useLoaderData } from "react-router";
 import { loadContacts } from "./loader";
 import Sidebar from "@/components/Sidebar/Sidebar";
+import { Button } from "@/components/ui/button";
 
 const ContactsPage = () => {
   const { contacts } = useLoaderData<typeof loadContacts>();
@@ -23,6 +24,13 @@ const ContactsPage = () => {
           id: contact.id,
           name: `${contact.firstName} ${contact.lastName}`,
         }))} pendingContactName={username}/>
+        <div>
+          <Form method="POST">
+            <Button>
+              Logout
+            </Button>
+          </Form>
+        </div>
       </div>
       {/* Detail View */}
       <div className="p-8">
