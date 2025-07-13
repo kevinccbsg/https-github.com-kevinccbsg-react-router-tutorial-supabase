@@ -6,7 +6,7 @@ import ContactsSkeletonPage from "./Layouts/HomeSkeleton";
 import ContactDetail from "./pages/ContactDetail";
 import { contactDetailActions, contactsActions, newContactAction } from "./pages/actions";
 import Signup from "./pages/auth/Signup";
-import { signup } from "./pages/auth/actions";
+import { login, signup } from "./pages/auth/actions";
 import Login from "./pages/auth/Login";
 
 const AppRoutes = createBrowserRouter([
@@ -38,6 +38,7 @@ const AppRoutes = createBrowserRouter([
   },
   {
     path: "/login",
+    action: login,
     Component: Login,
   },
   {

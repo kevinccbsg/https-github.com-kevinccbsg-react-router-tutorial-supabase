@@ -13,3 +13,7 @@ export const requireUserSession = async () => {
 export const logout = async () => {
   await auth.logout();
 };
+
+export const loginUser = async (email: string, password: string) => {
+  await auth.signInWithPassword(email, password);
+};
