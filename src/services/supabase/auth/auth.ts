@@ -7,6 +7,24 @@ interface UserPayload {
 
 const REDIRECT_URL = import.meta.env.VITE_SUPABASE_REDIRECT_URL as string;
 
+interface ProfileDBO {
+  id: string;
+  email: string;
+}
+
+export const getAuthenticatedUser = async (): Promise<ProfileDBO | null> => {
+  const { data, error } = await supabase.auth.getUser();
+  
+  if (error) {
+    return null;
+  }
+
+  return data.user ? {
+    id: data.user.id,
+    email: data.user.email || "",
+  } : null;
+};
+
 export const signUpUser = async (userPayload: UserPayload) => {  
   const { data, error } = await supabase.auth.signUp({
     email: userPayload.email,

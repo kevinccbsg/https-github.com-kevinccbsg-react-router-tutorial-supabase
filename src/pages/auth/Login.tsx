@@ -13,11 +13,11 @@ const Login = () => {
       <CardContent>
         <Form method="POST">
           <div className="mb-4">
-            <Label htmlFor="email">Email</Label>
+            <Label className="mb-2" htmlFor="email">Email</Label>
             <Input type="email" id="email" name="email" />
           </div>
           <div className="mb-4">
-            <Label htmlFor="password">Password</Label>
+            <Label className="mb-2" htmlFor="password">Password</Label>
             <Input type="password" id="password" name="password" />
           </div>
           <div className="flex items-center gap-4">
