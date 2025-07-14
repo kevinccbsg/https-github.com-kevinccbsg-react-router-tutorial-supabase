@@ -17,3 +17,10 @@ export const logout = async () => {
 export const loginUser = async (email: string, password: string) => {
   await auth.signInWithPassword(email, password);
 };
+
+export const signUpUser = async (userPayload: { email: string; password: string }) => {
+  await auth.signUpUser({
+    email: userPayload.email,
+    password: userPayload.password,
+  });
+};

@@ -1,5 +1,4 @@
-import { loginUser } from "@/lib/auth";
-import { signUpUser } from "@/services/supabase/auth/auth";
+import { loginUser, signUpUser } from "@/lib/auth";
 import { ActionFunctionArgs, redirect } from "react-router";
 
 export const signup = async ({ request }: ActionFunctionArgs) => {
