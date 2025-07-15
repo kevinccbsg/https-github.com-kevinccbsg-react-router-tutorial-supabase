@@ -1,6 +1,7 @@
 import { ActionFunctionArgs, redirect } from "react-router";
-import { createContact, deleteContact, updateFavoriteStatus } from "@/api/contacts";
-import { logout } from "@/lib/auth";
+import { deleteContact, updateFavoriteStatus } from "@/api/contacts";
+import { getUserSession, logout } from "@/lib/auth";
+import { createContact } from "@/services/supabase/contacts/contacts";
 
 interface NewContact {
   firstName: string;
@@ -25,11 +26,15 @@ export const newContactAction = async ({ request }: ActionFunctionArgs) => {
         phone: formData.get('phone') as string,
         avatar: formData.get('avatar') as string || undefined,
       };
-      // Añadir la validación que quieras zod, if-else, yup
-      // if (!newContact.firstName) {
-      //   return { error: "First name is required." };
-      // }
-      const newContactResponse = await createContact(newContact);
+      const user = await getUserSession();
+      if (!user) {
+        return redirect('/login');
+      }
+      const newContactResponse = await createContact({
+        ...newContact,
+        favorite: false, // Default value for new contacts
+        profileId: user.id,
+      });
       return redirect(`/contacts/${newContactResponse.id}`);
     },
   };
