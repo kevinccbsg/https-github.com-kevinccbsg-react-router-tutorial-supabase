@@ -31,3 +31,28 @@ export const createContact = async (contact: Contact) => {
 
   return data;
 };
+
+export const getContacts = async (profileId: string) => {
+  const { data, error } = await supabase
+    .from('contacts')
+    .select('*')
+    .eq('profile_id', profileId)
+    .order('created_at', { ascending: false });
+
+  if (error) {
+    throw new Error(error.message);
+  }
+
+  return data.map(contact => ({
+    id: contact.id,
+    email: contact.email,
+    favorite: contact.favorite,
+    firstName: contact.first_name,
+    lastName: contact.last_name,
+    username: contact.username,
+    phone: contact.phone,
+    profileId: contact.profile_id,
+    avatar: contact.avatar || undefined,
+  }));
+};
+
