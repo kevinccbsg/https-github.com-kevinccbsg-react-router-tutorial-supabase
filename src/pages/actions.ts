@@ -1,7 +1,6 @@
 import { ActionFunctionArgs, redirect } from "react-router";
-import { deleteContact, updateFavoriteStatus } from "@/api/contacts";
 import { getUserSession, logout } from "@/lib/auth";
-import { createContact } from "@/services/supabase/contacts/contacts";
+import { createContact, deleteContact, updateFavoriteStatus } from "@/services/supabase/contacts/contacts";
 
 interface NewContact {
   firstName: string;

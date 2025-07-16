@@ -56,3 +56,24 @@ export const getContacts = async (profileId: string) => {
   }));
 };
 
+export const deleteContact = async (id: string) => {
+  const { error } = await supabase
+    .from('contacts')
+    .delete()
+    .eq('id', id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const updateFavoriteStatus = async (id: string, favorite: boolean) => {
+  const { error } = await supabase
+    .from('contacts')
+    .update({ favorite })
+    .eq('id', id);
+
+  if (error) {
+    throw new Error(error.message);
+  }
+};
