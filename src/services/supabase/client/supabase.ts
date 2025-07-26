@@ -6,4 +6,6 @@ const ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY as string;
 
 const supabase = createClient<Database>(PROJECT_URL, ANON_KEY);
 
+export type Contact = Database["public"]["Tables"]["contacts"]["Row"];
+
 export default supabase;

@@ -6,9 +6,26 @@ import {
 } from "@testing-library/react";
 import ContactsPage from "@/pages/Contacts";
 import ContactDetail from "@/pages/ContactDetail";
-import { Contact } from "@/api/contacts";
 import ContactsSkeletonPage from "@/Layouts/HomeSkeleton";
 import userEvent from "@testing-library/user-event";
+
+// Workaround for jsdom bug with URLSearchParams in Node v22.14+
+// Ensures globalThis.URLSearchParams is the Node.js implementation
+import { URLSearchParams } from "node:url";
+// @ts-expect-error: Overriding globalThis.URLSearchParams for jsdom bug workaround
+globalThis.URLSearchParams = URLSearchParams;
+
+interface Contact {
+  id: string;
+  email: string;
+  favorite: boolean;
+  firstName: string;
+  lastName: string;
+  username: string;
+  phone: string;
+  profileId: string;
+  avatar: string | undefined;
+}
 
 describe("Contact Detail Page", () => {
   let Stub: ReturnType<typeof createRoutesStub>;
@@ -22,6 +39,7 @@ describe("Contact Detail Page", () => {
       avatar: "https://i.pravatar.cc/150?img=1",
       email: "jane.doe@example.com",
       phone: "+1 555-1234",
+      profileId: "profile_1",
       favorite: true,
     },
   ];
