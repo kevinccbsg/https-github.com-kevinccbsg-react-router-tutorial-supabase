@@ -18,6 +18,18 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: "./src/tests/setup.ts",
     exclude: [...configDefaults.exclude],
+    sequence: {
+      shuffle: false,
+      concurrent: false,
+    },
+    fileParallelism: false,
+    poolOptions: {
+      threads: {
+        isolate: true,
+        singleThread: true,
+        maxThreads: 1,
+      },
+    },
   },
   server: {
     watch: {

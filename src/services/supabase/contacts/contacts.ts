@@ -1,6 +1,6 @@
 import supabase from "../client/supabase";
 
-interface Contact {
+export interface Contact {
   email: string;
   favorite: boolean;
   firstName: string;
